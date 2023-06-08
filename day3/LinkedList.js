@@ -155,7 +155,21 @@ class LinkedList {
 
     // returns the length/number of nodes in a linked list
     length() {
-        
+        // let nodes = [];
+        // let thead = this.head;
+        // while (thead != null) {
+        //     nodes.push(thead.data);
+        //     thead = thead.next;
+        // }
+        // return nodes.length;
+
+        let nodes = 0;
+        let thead = this.head;
+        while (thead != null) {
+            nodes++;
+            thead = thead.next;
+        }
+        return nodes;
     }
 
     // returns the middleNode 
@@ -164,11 +178,34 @@ class LinkedList {
     }
 
     deleteHead() {
-        
+        // do not allow the deletion when the list is empty
+        if (this.head == null) {
+            return;
+        } else {
+            // non-empty list
+            // move the current head to next node
+            this.head = this.head.next;
+        }
     }
 
     deleteTail() {
-        
+        if (this.head == null) {
+            // list is empty
+            return;
+        } else if(this.head.next == null) {
+            // list has only one node
+            this.head = null;
+        } else {
+            // list has more than one node
+            let thead = this.head;
+
+            while (thead.next.next != null) {
+                thead = thead.next;
+            }
+
+            // thead.next.next = null
+            thead.next = null;
+        }
     }
 }
 
@@ -206,7 +243,12 @@ list.insertTail(4);
 list.insertTail(5);
 list.insertHead(1);
 list.insertHead(11);
+list.deleteHead();
+list.deleteTail();
 list.printList();
+
+
+console.log(`Length of the list is: ${list.length()}`);
 
 /*
     list = LinkedList {
